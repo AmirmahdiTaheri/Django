@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Styles</title>
+    <style>
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+       
+        .txt {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .dropbtn:hover {
+            background-color: #45a049;
+        }
+
+        
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s; 
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        
+        header nav ul {
+            list-style-type: none; 
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333; 
+        }
+
+        header nav ul li {
+            float: left;
+        }
+
+        header nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background-color: #111;
+        }
+
+        
+        .category {
+            float: right;
+            margin-right: 20px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white; 
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s; 
+        }
+
+        .category:hover {
+            background-color: #45a049; 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li> 
+            <li><a href="{% url 'contact' %}">Contact</a></li> 
+        </ul>
+    </nav>
+</header>
+
+<!-- Dropdown Menu -->
+<div class="dropdown">
+    <button class="dropbtn">Categories</button>
+    <div class="dropdown-content">
+        {% for category in categories %}
+            <a href="{% url 'category_list' %}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Txt Content -->
+<div class="txt">
+    {% for txt in txts %}
+        <a href="{% url 'txt_detail' txt_id=txt.id %}" target="_blank">{{ txt.subject }}</a>
+        <p>{{ txt.summary }}</p>
+        <p>{{ txt.time }}</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>

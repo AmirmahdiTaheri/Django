@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ category.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+        }
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+        nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+        nav a:hover {
+            background: #333;
+            color: #fff;
+        }
+        .content {
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .post-item {
+            margin-bottom: 10px;
+        }
+        .post-item h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .post-item p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>{{ category.name }}</h1>
+        </div>
+    </header>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}">Contact</a>
+        <a href="{% url 'category_list' %}" target="_blank">Categories</a>
+    </nav>
+    <div class="container">
+        <div class="content">
+            <h2>Posts in {{ category.name }}</h2>
+            {% for post in posts %}
+                <div class="post-item">
+                    <h3><a href="{% url 'txt_detail' txt_id=post.id %}" target="_blank">{{ post.subject }}</a></h3>
+                    <p>{{ post.summary }}</p>
+                    <p><small>Posted on: {{ post.time }}</small></p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

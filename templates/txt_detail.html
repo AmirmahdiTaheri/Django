@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ txt.subject }}</title>
+    <style>
+        /* CSS styles go here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .btn-back {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ txt.subject }}</h1>
+    <p>Category: {{ txt.category }}</p>
+    <p>Summary: {{ txt.summary }}</p>
+    <p>Distribution: {{ txt.distribution }}</p>
+    <p>Time: {{ txt.time }}</p>
+    <p>Special: {{ txt.special }}</p>
+    <a href="{% url 'home' %}" class="btn-back">Back to Home</a>
+</body>
+</html>
